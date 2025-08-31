@@ -1,0 +1,59 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Mi Perfil - Mi E-commerce{% endblock %}
+
+{% block content %}
+<div>
+    <h3>Mi Perfil</h3>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <h4>Información Personal</h4>
+        <div>
+            <label for="id_username">Nombre de usuario:</label>
+            {{ u_form.username }}
+        </div>
+        <div>
+            <label for="id_email">Email:</label>
+            {{ u_form.email }}
+        </div>
+        <div>
+            <label for="id_first_name">Nombre:</label>
+            {{ u_form.first_name }}
+        </div>
+        <div>
+            <label for="id_last_name">Apellido:</label>
+            {{ u_form.last_name }}
+        </div>
+        
+        <hr>
+        <h4>Información Adicional</h4>
+        
+        <div>
+            <label for="id_phone">Teléfono:</label>
+            {{ p_form.phone }}
+        </div>
+        <div>
+            <label for="id_birth_date">Fecha de nacimiento:</label>
+            {{ p_form.birth_date }}
+        </div>
+        <div>
+            <label for="id_address">Dirección:</label>
+            {{ p_form.address }}
+        </div>
+        <div>
+            <label for="id_city">Ciudad:</label>
+            {{ p_form.city }}
+        </div>
+        <div>
+            <label for="id_postal_code">Código postal:</label>
+            {{ p_form.postal_code }}
+        </div>
+        
+        <div>
+            <button type="submit">Actualizar Perfil</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

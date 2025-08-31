@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi E-commerce{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/">Mi E-commerce</a>
+            
+            <div style="float: right;">
+                {% if user.is_authenticated %}
+                    <span>Hola, {{ user.first_name|default:user.username }}</span>
+                    <a href="{% url 'profile' %}">Mi Perfil</a>
+                    <a href="{% url 'orders:user_orders' %}">Mis Pedidos</a>
+                    <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Cerrar Sesión</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                    <a href="{% url 'signup' %}">Registrarse</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Iniciar Sesión - Mi E-commerce{% endblock %}
+
+{% block content %}
+<div>
+    <h3>Iniciar Sesión</h3>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div>
+                <strong>Error:</strong>
+                {% for field, errors in form.errors.items %}
+                    <br>{{ errors.0 }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div>
+            <label for="id_username">Email:</label>
+            {{ form.username }}
+        </div>
+        
+        <div>
+            <label for="id_password">Contraseña:</label>
+            {{ form.password }}
+        </div>
+        
+        <div>
+            <button type="submit">Entrar</button>
+        </div>
+    </form>
+    
+    <hr>
+    <div>
+        <p><a href="{% url 'signup' %}">¿No tienes cuenta? Regístrate aquí</a></p>
+        <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+    </div>
+</div>
+{% endblock %}

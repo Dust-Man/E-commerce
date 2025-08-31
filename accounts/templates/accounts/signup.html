@@ -1,0 +1,56 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Registrarse - Mi E-commerce{% endblock %}
+
+{% block content %}
+<div>
+    <h3>Crear Cuenta</h3>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div>
+                <strong>Por favor corrige los siguientes errores:</strong>
+                {% for field, errors in form.errors.items %}
+                    <br>{{ field }}: {{ errors.0 }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div>
+            <label for="id_first_name">Nombre:</label>
+            {{ form.first_name }}
+        </div>
+        <div>
+            <label for="id_last_name">Apellido:</label>
+            {{ form.last_name }}
+        </div>
+        <div>
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </div>
+        <div>
+            <label for="id_phone">Teléfono (opcional):</label>
+            {{ form.phone }}
+        </div>
+        <div>
+            <label for="id_password1">Contraseña:</label>
+            {{ form.password1 }}
+        </div>
+        <div>
+            <label for="id_password2">Confirmar contraseña:</label>
+            {{ form.password2 }}
+        </div>
+        
+        <div>
+            <button type="submit">Crear Cuenta</button>
+        </div>
+    </form>
+    
+    <hr>
+    <div>
+        <p><a href="{% url 'login' %}">¿Ya tienes cuenta? Inicia sesión aquí</a></p>
+    </div>
+</div>
+{% endblock %}
